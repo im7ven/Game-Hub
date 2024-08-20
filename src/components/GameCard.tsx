@@ -11,22 +11,22 @@ interface Props {
 
 export const GameCard = ({ game }: Props) => {
   return (
-    <Card>
-      <Image src={getCroppedImageUrl(game.background_image)} />
-      <CardBody>
-        <HStack justifyContent="space-between" marginBottom={3}>
-          <PlatformIconList
-            platforms={game.parent_platforms.map(
-              (platform) => platform.platform
-            )}
-          />
-          <CriticScore score={game.metacritic} />
-        </HStack>
+    <Link to={`/games/${game.slug}`}>
+      <Card>
+        <Image src={getCroppedImageUrl(game.background_image)} />
+        <CardBody>
+          <HStack justifyContent="space-between" marginBottom={3}>
+            <PlatformIconList
+              platforms={game.parent_platforms.map(
+                (platform) => platform.platform
+              )}
+            />
+            <CriticScore score={game.metacritic} />
+          </HStack>
 
-        <Heading fontSize="2xl">
-          <Link to={`/games/${game.slug}`}>{game.name} </Link>
-        </Heading>
-      </CardBody>
-    </Card>
+          <Heading fontSize="2xl">{game.name}</Heading>
+        </CardBody>
+      </Card>
+    </Link>
   );
 };
